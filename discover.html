@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discover — GAYMINX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<style>
+  :root {
+    --han-purple: #6320EE;
+    --blue-lotus: #7255EC;
+    --harlequin-green: #2BE900;
+    --black: #0B0B0B;
+    --surface: #131316;
+    --surface-2: #17171c;
+    --border: #26232f;
+    --muted: #8b879b;
+    --text: #EDEBFA;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body {
+    background:
+      radial-gradient(circle at 10% 0%, rgba(99, 32, 238, 0.22), transparent 42%),
+      radial-gradient(circle at 90% 8%, rgba(114, 85, 236, 0.16), transparent 45%),
+      radial-gradient(circle at 50% 100%, rgba(43, 233, 0, 0.06), transparent 50%),
+      var(--black);
+    background-attachment: fixed;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 24px 0;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-bottom: 20px;
+  }
+
+  .logo {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, var(--harlequin-green), var(--blue-lotus) 55%, var(--han-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-decoration: none;
+    margin: 0;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  .tagline {
+    font-size: 0.78rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .tagline span { color: var(--harlequin-green); }
+
+  .dashboard-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 9px 16px;
+    border-radius: 20px;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  .dashboard-link:hover {
+    border-color: var(--blue-lotus);
+    color: #fff;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+    padding: 40px 0 60px;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--harlequin-green);
+    margin-bottom: 18px;
+  }
+
+  .hero-eyebrow::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--harlequin-green);
+    box-shadow: 0 0 10px rgba(43, 233, 0, 0.8);
+  }
+
+  .hero h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height: 1.05;
+    text-transform: uppercase;
+    margin: 0 0 18px;
+    letter-spacing: 1px;
+  }
+
+  .hero h1 .accent {
+    background: linear-gradient(90deg, var(--harlequin-green), var(--blue-lotus));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero p {
+    color: var(--muted);
+    font-size: 1rem;
+    max-width: 480px;
+    line-height: 1.6;
+    margin: 0 0 28px;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    background: linear-gradient(90deg, var(--han-purple), var(--blue-lotus));
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 15px 26px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 24px rgba(99, 32, 238, 0.4);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    text-decoration: none;
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 32px rgba(99, 32, 238, 0.6);
+    filter: brightness(1.08);
+  }
+
+  .cta-secondary {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .cta-secondary:hover {
+    color: var(--text);
+    border-color: var(--muted);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .hero-stat-value {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--harlequin-green);
+    text-shadow: 0 0 16px rgba(43, 233, 0, 0.35);
+  }
+
+  .hero-stat-label {
+    font-size: 0.68rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin-top: 2px;
+  }
+
+  /* ---------- Hero visual ---------- */
+  .hero-visual {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    background: linear-gradient(160deg, var(--surface), #1a1224);
+    box-shadow: 0 30px 70px rgba(99, 32, 238, 0.25);
+  }
+
+  /* Blurred, scaled-up copy of the thumbnail fills the frame without
+     visible letterboxing — hides the fact that source images are small. */
+  .hero-visual-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(30px) brightness(0.5) saturate(1.15);
+    transform: scale(1.25);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  /* Sharp foreground image shown at its native aspect ratio (contain),
+     so it never gets upscaled/cropped into blurriness. */
+  .hero-visual-fg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    filter: drop-shadow(0 18px 34px rgba(0,0,0,0.55));
+    z-index: 1;
+  }
+
+  .hero-visual-bg.loaded,
+  .hero-visual-fg.loaded {
+    opacity: 1;
+  }
+
+  .hero-visual::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(11,11,11,0.9) 0%, rgba(11,11,11,0.1) 45%, transparent 70%);
+    z-index: 2;
+  }
+
+  .hero-visual-glow {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(43, 233, 0, 0.25), transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(99, 32, 238, 0.35), transparent 50%);
+    animation: pulseGlow 5s ease-in-out infinite;
+    z-index: 3;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+
+  .hero-visual-caption {
+    position: absolute;
+    left: 20px;
+    bottom: 18px;
+    right: 20px;
+    z-index: 4;
+  }
+
+  .hero-visual-caption .tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--harlequin-green);
+    background: rgba(11,11,11,0.6);
+    border: 1px solid rgba(43,233,0,0.4);
+    padding: 3px 9px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+  }
+
+  .hero-visual-caption .title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: #fff;
+  }
+
+  /* ---------- Section shared ---------- */
+  .section {
+    padding: 50px 0;
+  }
+
+  .section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .section-heading h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-heading h2 .dot {
+    color: var(--harlequin-green);
+  }
+
+  .section-heading p {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin: 4px 0 0;
+  }
+
+  .carousel-controls {
+    display: flex;
+    gap: 8px;
+  }
+
+  .carousel-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .carousel-btn:hover {
+    border-color: var(--blue-lotus);
+    background: var(--surface-2);
+  }
+
+  /* ---------- Featured carousel ---------- */
+  .featured-track {
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 6px 6px 22px;
+    scrollbar-width: none;
+  }
+
+  .featured-track::-webkit-scrollbar { display: none; }
+
+  .featured-card {
+    position: relative;
+    flex: 0 0 220px;
+    aspect-ratio: 3 / 4;
+    border-radius: 16px;
+    overflow: hidden;
+    scroll-snap-align: start;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    cursor: pointer;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+
+  .featured-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(114, 85, 236, 0.6);
+  }
+
+  .featured-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .featured-card .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(11,11,11,0.95) 5%, rgba(11,11,11,0.15) 55%, transparent 75%);
+  }
+
+  .featured-card .info {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .featured-card .genre-tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--harlequin-green);
+    margin-bottom: 6px;
+  }
+
+  .featured-card .title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #fff;
+    line-height: 1.2;
+  }
+
+  /* ---------- Marquee ---------- */
+  .marquee-bar {
+    position: relative;
+    background: linear-gradient(90deg, var(--han-purple), var(--blue-lotus));
+    color: #0B0B0B;
+    padding: 12px 0;
+    overflow: hidden;
+    transform: skewY(-1.2deg);
+    margin: 10px 0 20px;
+  }
+
+  .marquee-track {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee 22s linear infinite;
+    transform: skewY(1.2deg);
+  }
+
+  .marquee-track span {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0 22px;
+  }
+
+  @keyframes marquee {
+    from { transform: skewY(1.2deg) translateX(0); }
+    to { transform: skewY(1.2deg) translateX(-50%); }
+  }
+
+  /* ---------- How it works ---------- */
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .how-card {
+    background: linear-gradient(160deg, var(--surface), var(--surface-2));
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 26px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .how-card .num {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 2.4rem;
+    color: rgba(255,255,255,0.06);
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    line-height: 1;
+  }
+
+  .how-card .icon {
+    font-size: 1.6rem;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .how-card h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 10px;
+  }
+
+  .how-card p {
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* ---------- Filters ---------- */
+  .filters-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 26px;
+  }
+
+  .filter-chip {
+    background: #0f0f13;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .filter-chip:hover {
+    color: var(--text);
+    border-color: var(--blue-lotus);
+  }
+
+  .filter-chip.active {
+    color: #fff;
+    background: linear-gradient(90deg, var(--han-purple), var(--blue-lotus));
+    border-color: transparent;
+    box-shadow: 0 0 14px rgba(99, 32, 238, 0.45);
+  }
+
+  .filter-select, .filter-search {
+    background: #0f0f13;
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    padding: 9px 14px;
+    border-radius: 20px;
+    outline: none;
+  }
+
+  .filter-select:focus, .filter-search:focus {
+    border-color: var(--blue-lotus);
+  }
+
+  .filter-search {
+    min-width: 200px;
+  }
+
+  .filter-search::placeholder { color: #55506a; }
+
+  .filter-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1L6 6L11 1' stroke='%238b879b' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 34px;
+  }
+
+  .filter-spacer { flex: 1; }
+
+  .results-count {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  /* ---------- Games grid ---------- */
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 18px;
+  }
+
+  .game-card {
+    background: linear-gradient(160deg, var(--surface), #121216);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .game-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(114, 85, 236, 0.55);
+    box-shadow: 0 12px 28px rgba(99, 32, 238, 0.2);
+  }
+
+  .game-thumb {
+    aspect-ratio: 16 / 9;
+    position: relative;
+    overflow: hidden;
+    background: var(--surface-2);
+  }
+
+  .game-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .game-card:hover .game-thumb img {
+    transform: scale(1.06);
+  }
+
+  .free-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(11, 11, 11, 0.65);
+    border: 1px solid rgba(43, 233, 0, 0.5);
+    color: var(--harlequin-green);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 20px;
+    backdrop-filter: blur(2px);
+  }
+
+  .game-info {
+    padding: 14px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .game-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    font-size: 0.63rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+
+  .game-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.4;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .load-more-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+
+  .load-more-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 13px 28px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  .load-more-btn:hover {
+    border-color: var(--blue-lotus);
+    color: #fff;
+  }
+
+  /* ---------- States ---------- */
+  .state-msg {
+    text-align: center;
+    padding: 50px 20px;
+    color: var(--muted);
+    font-size: 0.92rem;
+    grid-column: 1 / -1;
+  }
+
+  .state-msg.error { color: #ff8a8a; }
+
+  .retry-btn {
+    display: inline-block;
+    margin-top: 14px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 9px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  .retry-btn:hover { border-color: var(--blue-lotus); }
+
+  .skeleton {
+    background: linear-gradient(90deg, var(--surface) 25%, var(--surface-2) 37%, var(--surface) 63%);
+    background-size: 400% 100%;
+    animation: shimmer 1.4s ease infinite;
+    border-radius: 14px;
+    aspect-ratio: 16 / 12;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 100% 50%; }
+    100% { background-position: 0 50%; }
+  }
+
+  /* ---------- Modal ---------- */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 5, 7, 0.75);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 100;
+  }
+
+  .modal-backdrop.open { display: flex; }
+
+  .modal {
+    background: linear-gradient(160deg, var(--surface), var(--surface-2));
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    max-width: 560px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(99,32,238,0.15);
+    animation: slideIn 0.25s ease;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .modal-thumb {
+    aspect-ratio: 16 / 8;
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px 18px 0 0;
+    background: var(--surface-2);
+  }
+
+  .modal-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .modal-thumb::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(11,11,11,0.85) 0%, transparent 55%);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(11,11,11,0.55);
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .modal-body { padding: 22px 26px 26px; }
+
+  .modal-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    margin: 0 0 12px;
+  }
+
+  .modal-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .modal-desc {
+    font-size: 0.9rem;
+    color: var(--text);
+    opacity: 0.9;
+    line-height: 1.6;
+    margin: 0 0 22px;
+  }
+
+  .modal-facts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 20px;
+    margin-bottom: 22px;
+  }
+
+  .modal-fact-label {
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+
+  .modal-fact-value {
+    font-size: 0.85rem;
+    color: var(--text);
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .modal-actions .cta-btn {
+    padding: 13px 22px;
+  }
+
+  .modal-loading {
+    padding: 60px 20px;
+    text-align: center;
+    color: var(--muted);
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    text-align: center;
+    padding: 40px 20px 50px;
+    color: var(--muted);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+  }
+
+  footer a {
+    color: var(--harlequin-green);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+    }
+    .hero-visual {
+      aspect-ratio: 16 / 9;
+      order: -1;
+    }
+    .how-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .games-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .featured-card {
+      flex-basis: 170px;
+    }
+    .filter-search {
+      min-width: 0;
+      flex: 1 1 100%;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .games-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border);
+    border-top: 3px solid var(--harlequin-green);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 40px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div style="display: flex; align-items: center;">
+      <img src="/favicon.png" alt="GAYMINX" style="height: 50px; width: auto;">
+      <span class="logo" style="font-size: 1.8rem;">GAYMINX</span>
+    </div>
+    <div class="header-right">
+      <div class="tagline">track <span>·</span> discover <span>·</span> dominate</div>
+      <a href="index.html" class="dashboard-link">← Dashboard</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Live catalog · FreeToGame API</div>
+      <h1>Infinite adventures <span class="accent">Zero cost</span></h1>
+      <p>Stop scrolling. Start playing. Live, ad-free gateway to the best free PC and browser games on the internet. </p>
+      <div class="hero-actions">
+        <a href="#games" class="cta-btn">Browse Games ↓</a>
+        <a href="index.html" class="cta-secondary">Back to your dashboard</a>
+      </div>
+      <div class="hero-stats" id="heroStats">
+        <div>
+          <div class="hero-stat-value" id="statGameCount">—</div>
+          <div class="hero-stat-label">Games Listed</div>
+        </div>
+        <div>
+          <div class="hero-stat-value" id="statGenreCount">—</div>
+          <div class="hero-stat-label">Genres</div>
+        </div>
+        <div>
+          <div class="hero-stat-value">100%</div>
+          <div class="hero-stat-label">Free to Play</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual" id="heroVisual">
+      <div class="hero-visual-glow"></div>
+      <img id="heroVisualBg" class="hero-visual-bg" alt="" aria-hidden="true">
+      <img id="heroVisualImg" class="hero-visual-fg" alt="">
+      <div class="hero-visual-caption" id="heroVisualCaption"></div>
+    </div>
+  </section>
+
+  <section class="section" id="featured">
+    <div class="section-heading">
+      <div>
+        <h2>Featured Games<span class="dot">.</span></h2>
+        <p>A rotating spotlight pulled from the live catalog</p>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="carouselPrev" aria-label="Scroll left">‹</button>
+        <button class="carousel-btn" id="carouselNext" aria-label="Scroll right">›</button>
+      </div>
+    </div>
+    <div class="featured-track" id="featuredTrack"></div>
+  </section>
+
+  <div class="marquee-bar">
+    <div class="marquee-track" id="marqueeTrack"></div>
+  </div>
+
+  <section class="section" id="how">
+    <div class="section-heading">
+      <div>
+        <h2>How It Works<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <div class="how-grid">
+      <div class="how-card">
+        <span class="num">01</span>
+        <span class="icon">🔎</span>
+        <h3>Discover</h3>
+        <p>Browse the live, constantly-updated FreeToGame catalog — no accounts, no downloads to get started.</p>
+      </div>
+      <div class="how-card">
+        <span class="num">02</span>
+        <span class="icon">🎛️</span>
+        <h3>Filter</h3>
+        <p>Narrow things down by platform or genre, or search by name to find exactly what you're after.</p>
+      </div>
+      <div class="how-card">
+        <span class="num">03</span>
+        <span class="icon">📈</span>
+        <h3>Track</h3>
+        <p>Found something good? Send it straight to your GAYMINX dashboard and start logging sessions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="games">
+    <div class="section-heading">
+      <div>
+        <h2>All Games<span class="dot">.</span></h2>
+        <p id="resultsSummary" class="results-count"></p>
+      </div>
+    </div>
+
+    <div class="filters-bar">
+      <button type="button" class="filter-chip active" data-platform="all">All Platforms</button>
+      <button type="button" class="filter-chip" data-platform="pc">PC</button>
+      <button type="button" class="filter-chip" data-platform="browser">Browser</button>
+      <select class="filter-select" id="genreSelect">
+        <option value="all">All Genres</option>
+      </select>
+      <div class="filter-spacer"></div>
+      <input type="text" class="filter-search" id="searchInput" placeholder="Search games…">
+    </div>
+
+    <div class="games-grid" id="gamesGrid">
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+    </div>
+
+    <div class="load-more-wrap" id="loadMoreWrap" style="display:none;">
+      <button type="button" class="load-more-btn" id="loadMoreBtn">Load More</button>
+    </div>
+  </section>
+
+  <footer>
+    Game data provided by the <a href="https://www.freetogame.com/api-doc" target="_blank" rel="noopener">FreeToGame API</a>. Not affiliated with FreeToGame.
+    <br>
+    <a href="index.html">← Back to your GAYMINX dashboard</a>
+  </footer>
+</div>
+
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal" id="modal"></div>
+</div>
+
+<script>
+  // ---------- Config ----------
+  const API_BASE = 'https://www.freetogame.com/api';
+
+  // ---------- State ----------
+  let allGames = [];
+  let activePlatform = 'all';
+  let activeGenre = 'all';
+  let searchTerm = '';
+  let visibleCount = 12;
+  const PAGE_SIZE = 12;
+
+  // ---------- DOM refs ----------
+  const gamesGrid = document.getElementById('gamesGrid');
+  const featuredTrack = document.getElementById('featuredTrack');
+  const marqueeTrack = document.getElementById('marqueeTrack');
+  const genreSelect = document.getElementById('genreSelect');
+  const searchInput = document.getElementById('searchInput');
+  const loadMoreWrap = document.getElementById('loadMoreWrap');
+  const loadMoreBtn = document.getElementById('loadMoreBtn');
+  const resultsSummary = document.getElementById('resultsSummary');
+  const statGameCount = document.getElementById('statGameCount');
+  const statGenreCount = document.getElementById('statGenreCount');
+  const heroVisual = document.getElementById('heroVisual');
+  const heroVisualBg = document.getElementById('heroVisualBg');
+  const heroVisualImg = document.getElementById('heroVisualImg');
+  const heroVisualCaption = document.getElementById('heroVisualCaption');
+  const modalBackdrop = document.getElementById('modalBackdrop');
+  const modalEl = document.getElementById('modal');
+
+  // ---------- Helpers ----------
+  function escapeHTML(str) {
+    const div = document.createElement('div');
+    div.textContent = str == null ? '' : str;
+    return div.innerHTML;
+  }
+
+  function platformLabel(p) {
+    if (!p) return 'Unknown';
+    return p.toLowerCase() === 'pc' ? 'PC' : 'Browser';
+  }
+
+  // ---------- Init ----------
+  async function init() {
+    initFilterEvents();
+    initCarouselControls();
+    initModalEvents();
+    await loadCatalog();
+     const params = new URLSearchParams(window.location.search);
+    const genreParam = params.get('genre');
+    if (genreParam) {
+        // Wait for catalog to load, then filter
+        setTimeout(() => {
+            activeGenre = genreParam;
+            genreSelect.value = genreParam;
+            visibleCount = PAGE_SIZE;
+            renderGrid();
+            // Scroll to games section
+            document.getElementById('games').scrollIntoView({ behavior: 'smooth' });
+        }, 500);
+    }
+}
+
+  async function loadCatalog() {
+    renderGridState('loading');
+    try {
+      const res = await fetch(`${API_BASE}/games`);
+      if (!res.ok) throw new Error(`API responded with ${res.status}`);
+      const data = await res.json();
+      allGames = Array.isArray(data) ? data : [];
+
+      populateGenreOptions();
+      renderHeroStats();
+      renderHeroVisual();
+      renderFeatured();
+      renderMarquee();
+      visibleCount = PAGE_SIZE;
+      renderGrid();
+    } catch (err) {
+      console.error(err);
+      renderGridState('error');
+      statGameCount.textContent = '—';
+      statGenreCount.textContent = '—';
+    }
+  }
+
+  // ---------- Hero ----------
+  function renderHeroStats() {
+    const genres = new Set(allGames.map(g => g.genre).filter(Boolean));
+    statGameCount.textContent = allGames.length;
+    statGenreCount.textContent = genres.size;
+  }
+
+  function renderHeroVisual() {
+    if (allGames.length === 0) return;
+
+    const popularTitles = [
+        'PUBG', 'Genshin Impact', 'Lost Ark', 'Destiny 2', 
+        'Warframe', 'Fortnite', 'Apex Legends', 'Valorant',
+        'League of Legends', 'Dota 2', 'Throne and Liberty',
+        'Fall Guys', 'Neverness to Everness', 'Elden Ring',
+        'Cyberpunk 2077', 'The Witcher', 'Grand Theft Auto'
+    ];
+
+    // Try: popular games with screenshots
+    let candidates = allGames.filter(g => {
+        const isPopular = popularTitles.some(title => 
+            g.title.toLowerCase().includes(title.toLowerCase())
+        );
+        const hasScreenshots = g.screenshots && g.screenshots.length > 0;
+        return isPopular && hasScreenshots;
+    });
+
+    // Then: any popular game
+    if (candidates.length === 0) {
+        candidates = allGames.filter(g => 
+            popularTitles.some(title => 
+                g.title.toLowerCase().includes(title.toLowerCase())
+            )
+        );
+    }
+
+    // Then: any game with screenshots
+    if (candidates.length === 0) {
+        candidates = allGames.filter(g => g.screenshots && g.screenshots.length > 0);
+    }
+
+    // Fallback: any game
+    if (candidates.length === 0) candidates = allGames;
+
+    const pick = candidates[Math.floor(Math.random() * candidates.length)];
+
+    // Use screenshot if available, fallback to thumbnail
+    const imgUrl = pick.screenshots?.[0]?.image || pick.thumbnail;
+
+    heroVisualBg.src = imgUrl;
+    heroVisualBg.onload = () => heroVisualBg.classList.add('loaded');
+
+    heroVisualImg.src = imgUrl;
+    heroVisualImg.alt = pick.title;
+    heroVisualImg.onload = () => heroVisualImg.classList.add('loaded');
+
+    heroVisualCaption.innerHTML = `
+        <span class="tag">Free to Play</span>
+        <div class="title">${escapeHTML(pick.title)}</div>
+    `;
+
+    // Make it clickable
+    heroVisual.style.cursor = 'pointer';
+    heroVisual.onclick = () => openGameModal(pick.id);
+}
+
+  // ---------- Featured carousel ----------
+  function renderFeatured() {
+    const featured = [...allGames]
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 10);
+
+    featuredTrack.innerHTML = '';
+    featured.forEach(game => {
+      const card = document.createElement('div');
+      card.className = 'featured-card';
+      card.innerHTML = `
+        <img src="${game.thumbnail}" alt="${escapeHTML(game.title)}" loading="lazy">
+        <div class="overlay"></div>
+        <div class="info">
+          <span class="genre-tag">${escapeHTML(game.genre || '')}</span>
+          <div class="title">${escapeHTML(game.title)}</div>
+        </div>
+      `;
+      card.addEventListener('click', () => openGameModal(game.id));
+      featuredTrack.appendChild(card);
+    });
+  }
+
+  function initCarouselControls() {
+    document.getElementById('carouselPrev').addEventListener('click', () => {
+      featuredTrack.scrollBy({ left: -460, behavior: 'smooth' });
+    });
+    document.getElementById('carouselNext').addEventListener('click', () => {
+      featuredTrack.scrollBy({ left: 460, behavior: 'smooth' });
+    });
+  }
+
+  // ---------- Marquee ----------
+  function renderMarquee() {
+    const text = 'GAYMINX &nbsp;•&nbsp; PLAY FOR PURPOSE &nbsp;•&nbsp; ' + allGames.length + '+ FREE GAMES &nbsp;•&nbsp; TRACK · DISCOVER · DOMINATE &nbsp;•&nbsp; ';
+    marqueeTrack.innerHTML = `<span>${text}</span><span>${text}</span>`;
+  }
+
+  // ---------- Filters ----------
+  function populateGenreOptions() {
+    const genres = [...new Set(allGames.map(g => g.genre).filter(Boolean))].sort();
+    genreSelect.innerHTML = '<option value="all">All Genres</option>' +
+      genres.map(g => `<option value="${escapeHTML(g)}">${escapeHTML(g)}</option>`).join('');
+  }
+
+  function initFilterEvents() {
+    document.querySelectorAll('.filter-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+            activePlatform = chip.dataset.platform;
+            document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            visibleCount = PAGE_SIZE;
+            renderGrid();
+        });
+    });
+
+    genreSelect.addEventListener('change', () => {
+        activeGenre = genreSelect.value;
+        visibleCount = PAGE_SIZE;
+        renderGrid();
+    });
+
+    let debounceTimer;
+    searchInput.addEventListener('input', () => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
+            searchTerm = searchInput.value.trim().toLowerCase();
+            visibleCount = PAGE_SIZE;
+            renderGrid();
+        }, 250);
+    });
+
+    loadMoreBtn.addEventListener('click', () => {
+        visibleCount += PAGE_SIZE;
+        renderGrid();
+    });
+}
+
+  function getFilteredGames() {
+    return allGames.filter(g => {
+        // Platform filter: check if platform string CONTAINS the filter value
+        if (activePlatform !== 'all') {
+            const platformLower = (g.platform || '').toLowerCase();
+            if (!platformLower.includes(activePlatform)) return false;
+        }
+        if (activeGenre !== 'all' && g.genre !== activeGenre) return false;
+        if (searchTerm && !g.title.toLowerCase().includes(searchTerm)) return false;
+        return true;
+    });
+}
+
+  // ---------- Grid rendering ----------
+  function renderGridState(state) {
+    if (state === 'loading') {
+      gamesGrid.innerHTML = Array(8).fill('<div class="skeleton"></div>').join('');
+      loadMoreWrap.style.display = 'none';
+      resultsSummary.textContent = '';
+    } else if (state === 'error') {
+      gamesGrid.innerHTML = `
+        <div class="state-msg error">
+          ⚠️ Couldn't load the game catalog. This can happen if your network blocks the FreeToGame API.
+          <br><button type="button" class="retry-btn" id="retryBtn">Try Again</button>
+        </div>
+      `;
+      loadMoreWrap.style.display = 'none';
+      document.getElementById('retryBtn').addEventListener('click', loadCatalog);
+    }
+  }
+
+  function renderGrid() {
+    const filtered = getFilteredGames();
+    let filterSummary = '';
+    if (activeGenre !== 'all') {
+        filterSummary = ` — showing games in: ${activeGenre}`;
+    }
+    resultsSummary.textContent = `${filtered.length} game${filtered.length === 1 ? '' : 's'} found${filterSummary}`;
+
+    gamesGrid.innerHTML = '';
+
+    if (filtered.length === 0) {
+    gamesGrid.innerHTML = `
+        <div class="state-msg" style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+            <span style="font-size: 2.5rem; display: block; margin-bottom: 12px;">🔍</span>
+            <p style="color: var(--muted); font-size: 1rem;">
+                No games match your filters.<br>
+                Try changing the platform, genre, or search term.
+            </p>
+            <button type="button" class="retry-btn" onclick="resetFilters()">Reset Filters</button>
+        </div>
+    `;
+    loadMoreWrap.style.display = 'none';
+    return;
+  }
+
+  function resetFilters() {
+      activePlatform = 'all';
+      activeGenre = 'all';
+      searchTerm = '';
+      visibleCount = PAGE_SIZE;
+      document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      document.querySelector('.filter-chip[data-platform="all"]').classList.add('active');
+      genreSelect.value = 'all';
+      searchInput.value = '';
+    renderGrid();
+  }
+    const visible = filtered.slice(0, visibleCount);
+    visible.forEach(game => gamesGrid.appendChild(createGameCard(game)));
+
+    loadMoreWrap.style.display = filtered.length > visibleCount ? 'flex' : 'none';
+  }
+
+  function createGameCard(game) {
+    const card = document.createElement('div');
+    card.className = 'game-card';
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', `View details for ${game.title}`);
+
+    card.innerHTML = `
+      <div class="game-thumb">
+        <span class="free-badge">Free to Play</span>
+        <img src="${game.thumbnail}" alt="${escapeHTML(game.title)}" loading="lazy">
+      </div>
+      <div class="game-info">
+        <p class="game-title">${escapeHTML(game.title)}</p>
+        <div class="tag-row">
+          <span class="tag">${escapeHTML(platformLabel(game.platform))}</span>
+          <span class="tag">${escapeHTML(game.genre || 'Game')}</span>
+        </div>
+        <p class="game-desc">${escapeHTML(game.short_description || '')}</p>
+      </div>
+    `;
+
+    card.addEventListener('click', () => openGameModal(game.id));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openGameModal(game.id);
+      }
+    });
+
+    return card;
+  }
+
+  // ---------- Modal ----------
+  function initModalEvents() {
+    modalBackdrop.addEventListener('click', (e) => {
+      if (e.target === modalBackdrop) closeGameModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modalBackdrop.classList.contains('open')) closeGameModal();
+    });
+  }
+
+  async function openGameModal(id) {
+    modalEl.innerHTML = `<div class="modal-loading">Loading game details…</div>`;
+    modalBackdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+
+    try {
+      const res = await fetch(`${API_BASE}/game?id=${id}`);
+      if (!res.ok) throw new Error(`API responded with ${res.status}`);
+      const game = await res.json();
+      renderModal(game);
+    } catch (err) {
+      console.error(err);
+      modalEl.innerHTML = `
+        <div class="modal-body">
+          <button type="button" class="modal-close" id="modalCloseErr">✕</button>
+          <p class="modal-desc">Couldn't load details for this game right now. Please try again.</p>
+        </div>
+      `;
+      modalEl.querySelector('#modalCloseErr').addEventListener('click', closeGameModal);
+    }
+  }
+
+  function renderModal(game) {
+    modalEl.innerHTML = `
+      <div class="modal-thumb">
+        <button type="button" class="modal-close" id="modalCloseBtn" aria-label="Close">✕</button>
+        <img src="${game.thumbnail}" alt="${escapeHTML(game.title)}">
+      </div>
+      <div class="modal-body">
+        <p class="modal-title">${escapeHTML(game.title)}</p>
+        <div class="modal-meta">
+          <span class="tag">${escapeHTML(platformLabel(game.platform))}</span>
+          <span class="tag">${escapeHTML(game.genre || '')}</span>
+        </div>
+        <p class="modal-desc">${escapeHTML(game.short_description || game.description || '')}</p>
+        <div class="modal-facts">
+          <div>
+            <div class="modal-fact-label">Developer</div>
+            <div class="modal-fact-value">${escapeHTML(game.developer || '—')}</div>
+          </div>
+          <div>
+            <div class="modal-fact-label">Publisher</div>
+            <div class="modal-fact-value">${escapeHTML(game.publisher || '—')}</div>
+          </div>
+          <div>
+            <div class="modal-fact-label">Release Date</div>
+            <div class="modal-fact-value">${escapeHTML(game.release_date || '—')}</div>
+          </div>
+          <div>
+            <div class="modal-fact-label">Platform</div>
+            <div class="modal-fact-value">${escapeHTML(platformLabel(game.platform))}</div>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <a href="${game.game_url}" target="_blank" rel="noopener" class="cta-btn">Play Now ↗</a>
+          <button type="button" class="cta-btn" id="logThisGameBtn" style="background:transparent;border:1px solid var(--border);box-shadow:none;">Log a Session</button>
+        </div>
+      </div>
+    `;
+
+    modalEl.querySelector('#modalCloseBtn').addEventListener('click', closeGameModal);
+    modalEl.querySelector('#logThisGameBtn').addEventListener('click', (e) => {
+      const btn = e.currentTarget;
+      btn.disabled = true;
+      btn.textContent = 'Sending to dashboard…';
+
+      const platform = platformLabel(game.platform); // 'PC' or 'Browser'
+      const url = 'index.html?logGame=' + encodeURIComponent(game.title) +
+        '&logPlatform=' + encodeURIComponent(platform) +
+        '&logThumbnail=' + encodeURIComponent(game.thumbnail) +
+        '&logGenre=' + encodeURIComponent(game.genre || '');
+
+      setTimeout(() => { window.location.href = url; }, 450);
+    });
+  }
+
+  function closeGameModal() {
+    modalBackdrop.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  init();
+</script>
+
+</body>
+</html>

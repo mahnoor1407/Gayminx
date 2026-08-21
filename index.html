@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAYMINX — Gaming Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<input type="hidden" id="thumbnail">
+<input type="hidden" id="genre">
+
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<style>
+  :root {
+    --han-purple: #6320EE;
+    --blue-lotus: #7255EC;
+    --harlequin-green: #2BE900;
+    --black: #0B0B0B;
+    --surface: #131316;
+    --surface-2: #17171c;
+    --border: #26232f;
+    --muted: #8b879b;
+    --text: #EDEBFA;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+  }
+
+  body {
+    background:
+      radial-gradient(circle at 15% 0%, rgba(99, 32, 238, 0.18), transparent 40%),
+      radial-gradient(circle at 85% 10%, rgba(114, 85, 236, 0.15), transparent 45%),
+      radial-gradient(circle at 50% 100%, rgba(43, 233, 0, 0.06), transparent 50%),
+      var(--black);
+    background-attachment: fixed;
+  }
+
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 20px 80px;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, var(--harlequin-green), var(--blue-lotus) 55%, var(--han-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 30px rgba(99, 32, 238, 0.35);
+    margin: 0;
+  }
+
+  .tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .tagline span {
+    color: var(--harlequin-green);
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  .discover-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(90deg, var(--han-purple), var(--blue-lotus));
+    padding: 9px 16px;
+    border-radius: 20px;
+    box-shadow: 0 0 16px rgba(99, 32, 238, 0.4);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  }
+
+  .discover-link span {
+    color: var(--harlequin-green);
+    transition: transform 0.15s ease;
+  }
+
+  .discover-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 24px rgba(99, 32, 238, 0.6);
+    filter: brightness(1.08);
+  }
+
+  .discover-link:hover span {
+    transform: translateX(3px);
+  }
+
+  /* ---------- Discover promo banner ---------- */
+  .discover-promo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    background: linear-gradient(120deg, rgba(99, 32, 238, 0.18), rgba(43, 233, 0, 0.06));
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px 26px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .discover-promo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 90% 0%, rgba(114, 85, 236, 0.35), transparent 55%);
+    pointer-events: none;
+  }
+
+  .discover-promo-text {
+    position: relative;
+    z-index: 1;
+  }
+
+  .discover-promo-eyebrow {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--harlequin-green);
+    margin: 0 0 8px;
+  }
+
+  .discover-promo h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 6px;
+    color: var(--text);
+  }
+
+  .discover-promo-sub {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin: 0;
+    max-width: 480px;
+  }
+
+  .discover-promo-btn {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    background: linear-gradient(90deg, var(--han-purple), var(--blue-lotus));
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 13px 22px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(99, 32, 238, 0.4);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  }
+
+  .discover-promo-btn span {
+    color: var(--harlequin-green);
+    transition: transform 0.15s ease;
+  }
+
+  .discover-promo-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 28px rgba(99, 32, 238, 0.6);
+    filter: brightness(1.08);
+  }
+
+  .discover-promo-btn:hover span {
+    transform: translateX(3px);
+  }
+
+  /* ---------- Toast ---------- */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: linear-gradient(135deg, var(--han-purple), var(--blue-lotus));
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 10px 40px rgba(99, 32, 238, 0.5);
+    z-index: 999;
+    opacity: 0;
+    transition: all 0.4s ease;
+    pointer-events: none;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.toast.success {
+    border-left: 4px solid var(--harlequin-green);
+}
+
+.toast.error {
+    border-left: 4px solid #ff4444;
+}
+
+  /* ---------- Section headings ---------- */
+  h2.section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text);
+    margin: 0 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2.section-title::before {
+    content: "";
+    width: 4px;
+    height: 18px;
+    background: linear-gradient(180deg, var(--harlequin-green), var(--han-purple));
+    display: inline-block;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(43, 233, 0, 0.6);
+  }
+
+  /* ---------- Stats Dashboard ---------- */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+
+  .stat-card {
+    background: linear-gradient(160deg, var(--surface), var(--surface-2));
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 18px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .stat-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(99, 32, 238, 0.5), rgba(43, 233, 0, 0.15));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(114, 85, 236, 0.5);
+  }
+
+  .stat-card:hover::after { opacity: 1; }
+
+  .stat-value {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: var(--harlequin-green);
+    text-shadow: 0 0 18px rgba(43, 233, 0, 0.35);
+    margin-bottom: 6px;
+    line-height: 1.1;
+    word-break: break-word;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  /* ---------- Cards (shared) ---------- */
+  .panel {
+    background: linear-gradient(160deg, var(--surface), var(--surface-2));
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 26px;
+    margin-bottom: 36px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  }
+
+  /* ---------- Form ---------- */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .field.full {
+    grid-column: 1 / -1;
+  }
+
+  label {
+    font-size: 0.72rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+  }
+
+  input, select {
+    background: #0f0f13;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  input::placeholder { color: #55506a; }
+
+  input:focus, select:focus {
+    border-color: var(--blue-lotus);
+    box-shadow: 0 0 0 3px rgba(114, 85, 236, 0.2);
+  }
+
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1L6 6L11 1' stroke='%238b879b' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+
+  input[type="date"] {
+    color-scheme: dark;
+  }
+
+  .submit-btn {
+    grid-column: 1 / -1;
+    margin-top: 6px;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--han-purple), var(--blue-lotus));
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    box-shadow: 0 0 20px rgba(99, 32, 238, 0.35);
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(99, 32, 238, 0.6), 0 0 15px rgba(43, 233, 0, 0.25);
+    filter: brightness(1.08);
+  }
+
+  .submit-btn:active {
+    transform: translateY(0px);
+  }
+
+  /* ---------- Session History ---------- */
+  #sessionList {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .session-card {
+    background: linear-gradient(150deg, var(--surface), #121216);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--han-purple);
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    animation: slideIn 0.35s ease;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .session-main {
+    min-width: 0;
+  }
+
+  .session-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--text);
+    margin: 0 0 6px;
+    letter-spacing: 0.5px;
+  }
+
+  .session-meta {
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .session-meta .dot {
+    margin: 0 6px;
+    color: var(--han-purple);
+  }
+
+  .session-rating {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #0B0B0B;
+    background: var(--harlequin-green);
+    padding: 2px 9px;
+    border-radius: 20px;
+    margin-bottom: 6px;
+    box-shadow: 0 0 10px rgba(43, 233, 0, 0.4);
+  }
+
+  .session-notes {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-style: italic;
+    margin: 4px 0 0;
+  }
+
+  .session-hours {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--harlequin-green);
+    text-shadow: 0 0 16px rgba(43, 233, 0, 0.4);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .session-hours span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    opacity: 0.7;
+    margin-left: 2px;
+  }
+
+  /* ---------- Session actions ---------- */
+  .session-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .session-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .icon-btn {
+    background: #0f0f13;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+  }
+
+  .icon-btn:hover {
+    color: var(--text);
+    border-color: var(--blue-lotus);
+  }
+
+  .icon-btn.delete-btn:hover {
+    color: #ff5c5c;
+    border-color: #ff5c5c;
+  }
+
+  .icon-btn.save-btn {
+    color: var(--harlequin-green);
+    border-color: rgba(43, 233, 0, 0.4);
+  }
+
+  .icon-btn.save-btn:hover {
+    background: rgba(43, 233, 0, 0.1);
+  }
+
+  /* ---------- Inline edit form ---------- */
+  .edit-card {
+    background: linear-gradient(150deg, var(--surface), #121216);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--blue-lotus);
+    border-radius: 12px;
+    padding: 18px 20px;
+    animation: slideIn 0.35s ease;
+  }
+
+  .edit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .edit-grid .field.full {
+    grid-column: 1 / -1;
+  }
+
+  .edit-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .loading-state, .error-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .error-state {
+    color: #ff8a8a;
+  }
+
+  /* ---------- Empty state ---------- */
+  .empty-state {
+    text-align: center;
+    padding: 50px 20px;
+    color: var(--muted);
+  }
+
+  .empty-state .emoji {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .empty-state p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .similar-btn {
+      color: var(--blue-lotus) !important;
+      border-color: rgba(114, 85, 236, 0.4) !important;
+  }
+
+.similar-btn:hover {
+      color: var(--text) !important;
+      border-color: var(--blue-lotus) !important;
+      background: rgba(114, 85, 236, 0.1) !important;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 720px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+    .logo { font-size: 1.5rem; }
+    .session-card {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .session-side {
+      align-self: stretch;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .edit-grid {
+      grid-template-columns: 1fr;
+    }
+    .discover-promo {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .discover-promo-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div style="display: flex; align-items: center;">
+      <img src="/favicon.png" alt="GAYMINX" style="height: 50px; width: auto; ">
+      <span class="logo" style="font-size: 1.8rem;">GAYMINX</span>
+    </div>
+    <div class="header-right">
+      <div class="tagline">track <span>·</span> discover <span>·</span> dominate</div>
+      <a href="discover.html" class="discover-link">Discover Games <span>→</span></a>
+    </div>
+  </header>
+
+  <section class="discover-promo" id="discoverPromo">
+    <div class="discover-promo-text">
+      <p class="discover-promo-eyebrow">Live catalog · FreeToGame API</p>
+      <h2>Not sure what to play next?</h2>
+      <p class="discover-promo-sub">Browse free-to-play games by platform and genre, then send any pick straight into your log.</p>
+    </div>
+    <a href="discover.html" class="discover-promo-btn">Discover Games <span>→</span></a>
+  </section>
+
+  <section class="stats-grid" id="statsGrid">
+    <div class="stat-card">
+      <div class="stat-value" id="statTotalHours">0</div>
+      <div class="stat-label">Total Hours</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="statTotalSessions">0</div>
+      <div class="stat-label">Total Sessions</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="statMostPlayed">—</div>
+      <div class="stat-label">Most Played</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="statAvgSession">0h</div>
+      <div class="stat-label">Average Session</div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2 class="section-title">Log Session</h2>
+    <form id="sessionForm">
+      <div class="form-grid">
+        <div class="field">
+          <label for="gameName">Game Name</label>
+          <input type="text" id="gameName" placeholder="e.g. Elden Ring" required>
+        </div>
+        <div class="field">
+          <label for="hoursPlayed">Hours Played</label>
+          <input type="number" id="hoursPlayed" step="0.1" min="0" placeholder="e.g. 2.5" required>
+        </div>
+        <div class="field">
+          <label for="sessionDate">Date</label>
+          <input type="date" id="sessionDate" required>
+        </div>
+        <div class="field">
+          <label for="platform">Platform</label>
+          <select id="platform" required>
+            <option value="PC">PC</option>
+            <option value="Browser">Browser</option>
+            <option value="PlayStation">PlayStation</option>
+            <option value="Xbox">Xbox</option>
+            <option value="Switch">Switch</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="rating">Rating (1–10)</label>
+          <input type="number" id="rating" min="1" max="10" placeholder="e.g. 8">
+        </div>
+        <div class="field">
+          <label for="notes">Notes</label>
+          <input type="text" id="notes" placeholder="Any thoughts on the session?">
+        </div>
+        <button type="submit" class="submit-btn">Log Session</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="panel">
+    <h2 class="section-title">Session History</h2>
+    <div id="sessionList"></div>
+  </section>
+
+</div>
+
+<script>
+  // ---------- Config ----------
+  const API_BASE = '/api/sessions';
+
+  // ---------- State ----------
+  let sessions = [];
+  let editingId = null; // id of the session currently in inline-edit mode
+
+  const sessionListEl = document.getElementById('sessionList');
+  const form = document.getElementById('sessionForm');
+  const dateInput = document.getElementById('sessionDate');
+  const submitBtn = form.querySelector('.submit-btn');
+
+  const statTotalHours = document.getElementById('statTotalHours');
+  const statTotalSessions = document.getElementById('statTotalSessions');
+  const statMostPlayed = document.getElementById('statMostPlayed');
+  const statAvgSession = document.getElementById('statAvgSession');
+
+  // ---------- Init ----------
+  function init() {
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.value = today;
+    loadSessions();
+    prefillFromQueryParam();
+  }
+
+  // If the person arrived here via a "Log a Session" link from discover.html
+  // (index.html?logGame=Some+Game&logPlatform=PC), pre-fill the game name
+  // (and platform, when recognized) and clean the URL.
+  function prefillFromQueryParam() {
+    const params = new URLSearchParams(window.location.search);
+    const gameName = params.get('logGame');
+    if (!gameName) return;
+
+    document.getElementById('gameName').value = gameName;
+
+    const thumbnail = params.get('logThumbnail') || '';
+    const genre = params.get('logGenre') || '';
+    document.getElementById('thumbnail').value = thumbnail;
+    document.getElementById('genre').value = genre;
+
+    const platformParam = params.get('logPlatform');
+    const platformSelect = document.getElementById('platform');
+    if (platformParam) {
+      const match = [...platformSelect.options].find(
+        opt => opt.value.toLowerCase() === platformParam.toLowerCase()
+      );
+      if (match) platformSelect.value = match.value;
+    }
+
+    window.history.replaceState({}, '', window.location.pathname);
+    showToast(`"${gameName}" is ready to log — just add your hours below.`);
+    form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    document.getElementById('hoursPlayed').focus();
+  }
+
+  // Small dismissible confirmation banner shown after arriving from Discover.
+  function showToast(message, type = 'success') {
+    const existing = document.querySelector('.toast');
+    if (existing) existing.remove();
+
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+
+    // Trigger show
+    requestAnimationFrame(() => toast.classList.add('show'));
+
+    // Auto-hide after 3 seconds
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 400);
+    }, 3000);
+}
+
+  // ---------- API calls ----------
+  async function loadSessions() {
+    sessionListEl.innerHTML = `<div class="loading-state">Loading sessions…</div>`;
+    try {
+        const res = await fetch(API_BASE);
+        if (!res.ok) throw new Error(`Failed to load sessions (${res.status})`);
+        const data = await res.json();
+        
+        // 🔥 FIX: Map database fields to UI fields
+        const rawSessions = Array.isArray(data) ? data : (data.sessions || []);
+        sessions = rawSessions.map(s => ({
+            id: s.id,
+            game: s.game_name,              
+            hours: parseFloat(s.hours_played) || 0, 
+            date: s.session_date ? s.session_date.split('T')[0] : null,
+            platform: s.platform,
+            rating: s.rating,
+            notes: s.notes,
+            thumbnail: s.thumbnail,
+            genre: s.genre  
+        }));
+        
+        renderSessions();
+        updateStats();
+    } catch (err) {
+        console.error(err);
+        sessionListEl.innerHTML = `
+            <div class="error-state">
+                ⚠️ Couldn't load your sessions. Please try again in a moment.
+            </div>
+        `;
+        updateStats();
+    }
+}
+
+  async function createSession(payload) {
+    const res = await fetch(API_BASE, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error(`Failed to create session (${res.status})`);
+    return res.json();
+  }
+
+  async function updateSession(id, payload) {
+    const res = await fetch(`${API_BASE}/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error(`Failed to update session (${res.status})`);
+    return res.json();
+  }
+
+  async function deleteSessionRequest(id) {
+    const res = await fetch(`${API_BASE}/${id}`, { method: 'DELETE' });
+    if (!res.ok) throw new Error(`Failed to delete session (${res.status})`);
+  }
+
+  // ---------- Helpers ----------
+  function formatDate(dateStr) {
+    if (!dateStr) return '';
+    const d = new Date(dateStr + 'T00:00:00');
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
+
+  function escapeHTML(str) {
+    const div = document.createElement('div');
+    div.textContent = str == null ? '' : str;
+    return div.innerHTML;
+  }
+
+  function getSessionId(session) {
+    return session.id ?? session._id;
+  }
+
+  // ---------- Rendering: read-only card ----------
+  function createSessionCard(session) {
+    const id = getSessionId(session);
+    const card = document.createElement('div');
+    card.className = 'session-card';
+
+    // 🔥 THUMBNAIL: if available, show it
+    const thumbnailHTML = session.thumbnail 
+        ? `<img src="${session.thumbnail}" alt="${escapeHTML(session.game)}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px; flex-shrink: 0;">`
+        : '';
+
+    const ratingHTML = session.rating
+        ? `<div class="session-rating">${session.rating}/10 ★</div>`
+        : '';
+
+    const notesHTML = session.notes
+        ? `<p class="session-notes">"${escapeHTML(session.notes)}"</p>`
+        : '';
+
+    card.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 14px; width: 100%;">
+            ${thumbnailHTML}
+            <div class="session-main" style="flex: 1;">
+                <p class="session-title">${escapeHTML(session.game)}</p>
+                <div class="session-meta">${escapeHTML(session.platform)}<span class="dot">•</span>${formatDate(session.date)}</div>
+                ${ratingHTML}
+                ${notesHTML}
+            </div>
+            <div class="session-side">
+                <div class="session-hours">${session.hours}<span>h</span></div>
+                <div class="session-actions">
+                    <button type="button" class="icon-btn edit-btn">Edit</button>
+                    <button type="button" class="icon-btn delete-btn">Delete</button>
+                    <button type="button" class="icon-btn similar-btn" data-game="${escapeHTML(session.game)}" data-genre="${escapeHTML(session.genre || '')}">🔍 Similar</button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    card.querySelector('.edit-btn').addEventListener('click', () => {
+        editingId = id;
+        renderSessions();
+    });
+
+    card.querySelector('.delete-btn').addEventListener('click', () => {
+        handleDelete(id);
+    });
+
+    card.querySelector('.similar-btn').addEventListener('click', () => {
+    const genre = session.genre || '';
+    if (!genre) {
+        showToast('No genre info for this game. Log it from Discover to enable similar recommendations.');
+        return;
+    }
+    window.location.href = `discover.html?genre=${encodeURIComponent(genre)}`;
+    });
+
+    return card;
+}
+
+  // ---------- Rendering: inline edit form ----------
+  function createEditCard(session) {
+    const id = getSessionId(session);
+    const card = document.createElement('div');
+    card.className = 'edit-card';
+
+    card.innerHTML = `
+      <div class="edit-grid">
+        <div class="field">
+          <label>Game Name</label>
+          <input type="text" class="edit-game" value="${escapeHTML(session.game)}" required>
+        </div>
+        <div class="field">
+          <label>Hours Played</label>
+          <input type="number" step="0.1" min="0" class="edit-hours" value="${session.hours}" required>
+        </div>
+        <div class="field">
+          <label>Date</label>
+          <input type="date" class="edit-date" value="${session.date}" required>
+        </div>
+        <div class="field">
+          <label>Platform</label>
+          <select class="edit-platform">
+            <option value="PC">PC</option>
+            <option value="Browser">Browser</option>
+            <option value="PlayStation">PlayStation</option>
+            <option value="Xbox">Xbox</option>
+            <option value="Switch">Switch</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Rating (1–10)</label>
+          <input type="number" min="1" max="10" class="edit-rating" value="${session.rating ?? ''}">
+        </div>
+        <div class="field full">
+          <label>Notes</label>
+          <input type="text" class="edit-notes" value="${escapeHTML(session.notes ?? '')}">
+        </div>
+      </div>
+      <div class="edit-actions">
+        <button type="button" class="icon-btn cancel-btn">Cancel</button>
+        <button type="button" class="icon-btn save-btn">Save</button>
+      </div>
+    `;
+
+    card.querySelector('.edit-platform').value = session.platform;
+
+    card.querySelector('.cancel-btn').addEventListener('click', () => {
+      editingId = null;
+      renderSessions();
+    });
+
+    card.querySelector('.save-btn').addEventListener('click', () => {
+      const updated = {
+        game: card.querySelector('.edit-game').value.trim(),
+        hours: parseFloat(card.querySelector('.edit-hours').value),
+        date: card.querySelector('.edit-date').value,
+        platform: card.querySelector('.edit-platform').value,
+        rating: card.querySelector('.edit-rating').value
+          ? Math.min(10, Math.max(1, parseInt(card.querySelector('.edit-rating').value, 10)))
+          : null,
+        notes: card.querySelector('.edit-notes').value.trim()
+      };
+
+      if (!updated.game || isNaN(updated.hours) || !updated.date) return;
+
+      handleUpdate(id, updated);
+    });
+
+    return card;
+  }
+
+  function renderSessions() {
+    sessionListEl.innerHTML = '';
+
+    if (sessions.length === 0) {
+      sessionListEl.innerHTML = `
+        <div class="empty-state">
+          <span class="emoji">🎮</span>
+          <p>No sessions logged yet, player one. Fire up a game and log your first run — your stats board is waiting to level up!</p>
+        </div>
+      `;
+      return;
+    }
+
+    sessions.forEach(session => {
+      const id = getSessionId(session);
+      const node = (editingId !== null && id === editingId)
+        ? createEditCard(session)
+        : createSessionCard(session);
+      sessionListEl.appendChild(node);
+    });
+  }
+
+  function updateStats() {
+    if (sessions.length === 0) {
+      statTotalHours.textContent = '0';
+      statTotalSessions.textContent = '0';
+      statMostPlayed.textContent = '—';
+      statAvgSession.textContent = '0h';
+      return;
+    }
+
+    const totalHours = sessions.reduce((sum, s) => sum + Number(s.hours), 0);
+    const totalSessions = sessions.length;
+    const avgSession = totalHours / totalSessions;
+
+    const hoursByGame = {};
+    sessions.forEach(s => {
+      hoursByGame[s.game] = (hoursByGame[s.game] || 0) + Number(s.hours);
+    });
+    let mostPlayed = '—';
+    let maxHours = -1;
+    for (const game in hoursByGame) {
+      if (hoursByGame[game] > maxHours) {
+        maxHours = hoursByGame[game];
+        mostPlayed = game;
+      }
+    }
+
+    statTotalHours.textContent = totalHours.toFixed(1);
+    statTotalSessions.textContent = totalSessions;
+    statMostPlayed.textContent = mostPlayed;
+    statAvgSession.textContent = avgSession.toFixed(1) + 'h';
+  }
+
+  // ---------- Action handlers ----------
+  async function handleDelete(id) {
+    const previousHTML = sessionListEl.innerHTML;
+    try {
+      await deleteSessionRequest(id);
+      await loadSessions();
+      showToast('🗑️ Session deleted');
+    } catch (err) {
+      console.error(err);
+      alert("Couldn't delete that session. Please try again.");
+      sessionListEl.innerHTML = previousHTML;
+    }
+  }
+
+  async function handleUpdate(id, payload) {
+    try {
+      await updateSession(id, payload);
+      editingId = null;
+      await loadSessions();
+      showToast('✅ Session updated!');
+    } catch (err) {
+      console.error(err);
+      alert("Couldn't save your changes. Please try again.");
+    }
+  }
+
+  // ---------- Form submit (create) ----------
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const game = document.getElementById('gameName').value.trim();
+    const hours = parseFloat(document.getElementById('hoursPlayed').value);
+    const date = document.getElementById('sessionDate').value;
+    const platform = document.getElementById('platform').value;
+    const ratingRaw = document.getElementById('rating').value;
+    const rating = ratingRaw ? Math.min(10, Math.max(1, parseInt(ratingRaw, 10))) : null;
+    const notes = document.getElementById('notes').value.trim();
+
+    if (!game || isNaN(hours) || !date) return;
+
+    const newSession = { game, hours, date, platform, rating, notes,
+      thumbnail: document.getElementById('thumbnail').value,
+      genre: document.getElementById('genre').value
+     };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Logging…';
+
+    try {
+      await createSession(newSession);
+      await loadSessions();
+      showToast(`✅ "${game}" logged successfully!`);
+
+      form.reset();
+      const today = new Date().toISOString().split('T')[0];
+      dateInput.value = today;
+    } catch (err) {
+      console.error(err);
+      alert("Couldn't log that session. Please try again.");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Log Session';
+    }
+  });
+
+  init();
+</script>
+
+</body>
+</html>
