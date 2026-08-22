@@ -2,7 +2,7 @@ const express = require('express');
 const { Pool } = require('pg');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
@@ -110,37 +110,6 @@ app.get('/api/game/:id', async (req, res) => {
         const response = await fetch(`https://www.freetogame.com/api/game?id=${req.params.id}`);
         const data = await response.json();
         res.json(data);
-    } catch (error) {
-        console.error('FreeToGame API error:', error);
-        res.status(500).json({ error: 'Failed to fetch game details' });
-    }
-});
-
-// GET all free games (with optional platform filter)
-app.get('/api/games', async (req, res) => {
-    const { platform } = req.query;
-    let url = 'https://www.freetogame.com/api/games';
-    
-    if (platform) {
-        url += `?platform=${platform}`;
-    }
-
-    try {
-        const response = await fetch(url);
-        const games = await response.json();
-        res.json(games);
-    } catch (error) {
-        console.error('FreeToGame API error:', error);
-        res.status(500).json({ error: 'Failed to fetch games' });
-    }
-});
-
-// GET a single game by ID (for details page/modal)
-app.get('/api/game/:id', async (req, res) => {
-    try {
-        const response = await fetch(`https://www.freetogame.com/api/game?id=${req.params.id}`);
-        const game = await response.json();
-        res.json(game);
     } catch (error) {
         console.error('FreeToGame API error:', error);
         res.status(500).json({ error: 'Failed to fetch game details' });
