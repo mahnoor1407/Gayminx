@@ -7,11 +7,8 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'gayminx',        
-    password: 'root',       
-    port: 5432,
+    connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false }
 });
 
 // GET all sessions
