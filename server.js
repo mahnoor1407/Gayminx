@@ -50,9 +50,7 @@ app.get('/', (req, res) => {
     res.send('🎮 Gamer\'s Hub API is running!<br>Visit <a href="/api/sessions">/api/sessions</a> to see your data.');
 });
 
-app.listen(port, () => {
-    console.log(`🎮 Gamer's Hub running at http://localhost:3000`);
-});
+module.exports = app;
 
 const path = require('path');
 
